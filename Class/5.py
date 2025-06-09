@@ -12,3 +12,5 @@ class Person:
 
 p1 = Person(18, 'Juan')
 print(p1.get_ano_nascimento())
+
+print(vars(p1))

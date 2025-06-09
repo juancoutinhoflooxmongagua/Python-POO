@@ -2,7 +2,12 @@
 
 
 class Person:
-    nome = 'nome'
+    def __init__(self, name, lastname):
+        self.name = name
+        self.lastname = lastname
+    
 
-p1 = Person()
-print(p1.nome)
+p1 = Person('Marcos', 'Fernando')
+
+print(p1.name)
+print(p1.lastname)

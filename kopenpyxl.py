@@ -1,28 +1,30 @@
 from pathlib import Path
 
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
+from openpyxl.cell import Cell
 from openpyxl.worksheet.worksheet import Worksheet
 
 ROOT_FOLDER = Path(__file__).parent
-WORKBOOK_PATH = ROOT_FOLDER / 'workbook.xlsx'
+WORKBOOK_PATH = ROOT_FOLDER / "workbook.xlsx"
 
-workbook = Workbook()
-worksheet: Worksheet = workbook.active
+# Carregando um arquivo do excel
+workbook: Workbook = load_workbook(WORKBOOK_PATH)
 
-# Criando os cabeçalhos
-worksheet.cell(1, 1, 'Nome')
-worksheet.cell(1, 2, 'Idade')
-worksheet.cell(1, 3, 'Nota')
+# Nome para a planilha
+sheet_name = "Minha planilha"
 
-students = [
-    # nome      idade nota
-    ['João',    14,   5.5],
-    ['Maria',   13,   9.7],
-    ['Luiz',    15,   8.8],
-    ['Alberto', 16,   10],
-]
+# Selecionou a planilha
+worksheet: Worksheet = workbook[sheet_name]
 
-for student in students:Add commentMore actions
-    worksheet.append(student)
+row: tuple[Cell]
+for row in worksheet.iter_rows(min_row=2):
+    for cell in row:
+        print(cell.value, end="\t")
+
+        if cell.value == "Maria":
+            worksheet.cell(cell.row, 2, 23)
+    print()
+
+# worksheet['B3'].value = 14
 
 workbook.save(WORKBOOK_PATH)

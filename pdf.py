@@ -16,9 +16,8 @@ page0 = reader.pages[0]
 imagem0 = page0.images[0]
 
 
-
 for i, page in enumerate(reader.pages):
     writer = PdfWriter()
-    with open(PASTA_NOVA / f'page{i}.pdf', 'wb') as arquivo:
-        writer.add_page(page)Add commentMore actions
+    with open(PASTA_NOVA / f"page{i}.pdf", "wb") as arquivo:
+        writer.add_page(page)
         writer.write(arquivo)
